@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import api from "./api";
+import '../App.css';
 
+import img_pokeball from "../assets/pokeball.svg"
 
 function Pokedex() {
     const [pokemon, setPokemon] = useState(null);
@@ -34,19 +36,19 @@ function Pokedex() {
       <div className="pokedex">
         <h1>SEJA BEM BINDO A POKEDEX!</h1>
         <p>Digite o nome ou id do pokemon</p>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="inputconfig">
           <input 
-            placeholder="Numero ou Nome do pokemon"
+            placeholder="Nome ou Numero"
             value={typedPokemon}
             onChange={handleChange}>
           </input>
-          <button type="submit">
+          <button className="buttonconfig" type="submit" >
             {
               isLoading ? (
                 <span>carregando...</span>
               ) : (
                 <>
-                Buscar
+                Buscar<img src={img_pokeball} alt="pokeball" className="buttonimg"/>{' '}
                 </>
               )
             }
@@ -58,7 +60,7 @@ function Pokedex() {
              <h2>{pokemon.name}</h2>
              <img src={pokemon.sprites['front_default']} alt={pokemon.name} />
            </div>
-           <div>
+           <div className="pokemondetails">
                <span>
                   <strong>Altura: </strong> {pokemon.height * 10}cm
                </span>
