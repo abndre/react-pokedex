@@ -14,6 +14,11 @@ function Pokedex() {
       setTypedPokemon(event.target.value.toLowerCase());
     };
   
+    // 👇️ if you only need to capitalize first letter
+    const capitalizeFirst = str => {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    };
+
     const handleSubmit = async (event) => {
       event.preventDefault();
       if (!typedPokemon){
@@ -34,13 +39,14 @@ function Pokedex() {
   
      return (
       <div className="pokedex">
-        <h1>SEJA BEM BINDO A POKEDEX!</h1>
+        <h1>SEJA BEM VINDO A POKEDEX!</h1>
         <p>Digite o nome ou id do pokemon</p>
         <form onSubmit={handleSubmit} className="inputconfig">
           <input 
             placeholder="Nome ou Numero"
             value={typedPokemon}
-            onChange={handleChange}>
+            onChange={handleChange}
+            className="inputstyle">
           </input>
           <button className="buttonconfig" type="submit" >
             {
@@ -54,11 +60,12 @@ function Pokedex() {
             }
           </button>
         </form>
+        {error  &&<span>{error}</span>}
         {pokemon && (
           <>
-            <div key={pokemon.id}>
-             <h2>{pokemon.name}</h2>
-             <img src={pokemon.sprites['front_default']} alt={pokemon.name} />
+            <div className="pokemondetails" key={pokemon.id}>
+             <h2>{capitalizeFirst(pokemon.name)}</h2>
+             <img src={pokemon.sprites['front_default']} alt={pokemon.name} className="avatarimg"/>
            </div>
            <div className="pokemondetails">
                <span>
