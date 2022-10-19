@@ -1,12 +1,16 @@
-
-.pokedex {
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  text-align: center;
+  border-radius: 15px;
 }
 
+.pokedex {
+  background-color: #bb3517;
+  justify-content: center;
+  text-align: center;
+  border-radius: 15px;
+}
 
 
 .pokemondetails{
@@ -24,9 +28,8 @@
   width: 85px;
   height: 30px;
   background: #e3350c;
-  border-radius: 0 5px 5px 0;
   border: 0;
-  color: #fff;
+  border-radius: 15px;
   font-weight: bold;
   transition: background-color 0.2s;
 
@@ -45,12 +48,12 @@
   padding: 0 24px;
   border-radius: 5px 0 0 5px;
   color: #3a3a3a;
-  border: 2px solid #fff;
   border-right: 0;
 }
 
 .inputstyle{
   height: 25px;
+  text-align: center;
   
 }
 

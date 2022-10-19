@@ -38,6 +38,7 @@ function Pokedex() {
     };
   
      return (
+      <div className= "container">
       <div className="pokedex">
         <h1>SEJA BEM VINDO A POKEDEX!</h1>
         <p>Digite o nome ou id do pokemon</p>
@@ -83,6 +84,7 @@ function Pokedex() {
             </div>
           </>  
         )}
+          </div>
           </div>
     )
   }
