@@ -8,7 +8,8 @@ function Pokedex() {
     const [pokemon, setPokemon] = useState(null);
     const [error, setError] = useState(null);
     const [typedPokemon, setTypedPokemon] = useState('');
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
+    const [isShine, setIsShine] = useState(false);
   
     const handleChange = (event) => {
       setTypedPokemon(event.target.value.toLowerCase());
@@ -19,6 +20,11 @@ function Pokedex() {
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
 
+    const handleSubmitShine = () => {
+      //event.preventDefault();
+      setIsShine(value => !value);
+    };
+
     const handleSubmit = async (event) => {
       event.preventDefault();
       if (!typedPokemon){
@@ -27,6 +33,7 @@ function Pokedex() {
       setIsLoading(true);
       try {
         const response = await api.get(`/pokemon/${typedPokemon}`);
+        console.log(response.data)
         setPokemon(response.data);
         setError(null)
         setIsLoading(false);
@@ -66,7 +73,20 @@ function Pokedex() {
           <>
             <div className="pokemondetails" key={pokemon.id}>
              <h2>{capitalizeFirst(pokemon.name)}</h2>
-             <img src={pokemon.sprites['front_default']} alt={pokemon.name} className="avatarimg"/>
+             {
+              isShine ? (
+                <img src={pokemon.sprites['front_shiny']} alt={pokemon.name} className="avatarimg"/>
+              ) :(
+                <img src={pokemon.sprites['front_default']} alt={pokemon.name} className="avatarimg"/>
+              )
+             }
+             <button className="buttonconfig" type="submit" onClick={handleSubmitShine}>{
+              isShine ? (
+                <>Normal Version</>
+              ) : (
+                <>Shine Version</>
+              )
+             }</button>
            </div>
            <div className="pokemondetails">
                <span>
