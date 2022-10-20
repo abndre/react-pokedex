@@ -33,7 +33,6 @@ function Pokedex() {
       setIsLoading(true);
       try {
         const response = await api.get(`/pokemon/${typedPokemon}`);
-        console.log(response.data)
         setPokemon(response.data);
         setError(null)
         setIsLoading(false);
